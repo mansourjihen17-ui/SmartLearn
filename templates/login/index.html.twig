@@ -3,17 +3,37 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 100vh; background-color: #f8f9fa;">
+        <div class="mb-4">
+            <a href="#" class="btn" style="background-color: #00bfff; color: white; border-radius: 20px; padding: 10px 20px; text-decoration: none;">Home</a>
+            <a href="#" class="btn" style="background-color: #00bfff; color: white; border-radius: 20px; padding: 10px 20px; text-decoration: none;">Courses</a>
+            <a href="#" class="btn" style="background-color: #00bfff; color: white; border-radius: 20px; padding: 10px 20px; text-decoration: none;">Login</a>
+            <a href="#" class="btn" style="background-color: #00bfff; color: white; border-radius: 20px; padding: 10px 20px; text-decoration: none;">Join Now</a>
+        </div>
         {% if error %}
-            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
-        <form action="{{ path('app_login') }}" method="post">
-            <label for="username">Username:</label>
-            <input class="form-control mb-3" type="text" id="username" name="_username" value="{{ last_username }}">
-            <label for="password">Password:</label>
-            <input class="form-control mb-3" type="password" id="password" name="_password">
-            <input type="hidden" name="_target_path" value="/profile">
-            <button class="btn btn-primary py-3 px-5 mt-2" type="submit">Login</button>
+        <form action="{{ path('app_login') }}" method="post" class="p-4 rounded shadow" style="background-color: #ffffff; width: 100%; max-width: 400px;">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Enter your username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input class="form-control" type="password" id="password" name="_password" placeholder="Enter your password">
+            </div>
+            <button class="btn btn-primary w-100 mt-3" type="submit">Login</button>
         </form>
+        <div class="mt-4 text-center">
+            <p class="fw-bold">Contact us:</p>
+            <p><i class="bi bi-geo-alt"></i> Cite Ghazela, Ariana</p>
+            <p><i class="bi bi-telephone"></i> +216 99 11 11 11</p>
+            <p><i class="bi bi-envelope"></i> info@tekup.com</p>
+            <div>
+                <a href="#" class="text-primary me-2"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-primary"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
     </div>
 {% endblock %}

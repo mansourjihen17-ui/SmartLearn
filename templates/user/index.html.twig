@@ -1,6 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ user.username }}!{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block body %}
+    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 100vh; background-color: #f8f9fa;">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <form action="{{ path('app_login') }}" method="post" class="p-4 rounded shadow" style="background-color: #ffffff; width: 100%; max-width: 400px;">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Enter your username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input class="form-control" type="password" id="password" name="_password" placeholder="Enter your password">
+            </div>
+            <button class="btn btn-primary w-100 mt-3" type="submit">Login</button>
+        </form>
+        <div class="mt-4 text-center">
+            <p class="fw-bold">Contact us:</p>
+            <p><i class="bi bi-geo-alt"></i> Cite Ghazela, Ariana</p>
+            <p><i class="bi bi-telephone"></i> +216 99 11 11 11</p>
+            <p><i class="bi bi-envelope"></i> info@tekup.com</p>
+            <div>
+                <a href="#" class="text-primary me-2"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-primary"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
