@@ -1,26 +1,107 @@
 {% extends 'base.html.twig' %}
-{% block title %}Register{% endblock %}
+
+{% block title %}Inscription - SmartLearn{% endblock %}
 
 {% block body %}
-    <div class="container">
-        {% for flash_error in app.flashes('verify_email_error') %}
-            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-        {% endfor %}
+    <style>
+        body{
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color:#fff;
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass-card{
+            background: rgba(255,255,255,.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,.4);
+            color: #fff;
+            padding: 3rem;
+            max-width: 500px;
+            margin: 5rem auto;
+        }
+        .form-control, .form-select{
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 12px;
+            color: #fff;
+        }
+        .form-control::placeholder{color: rgba(255,255,255,.6);}
+        .form-label{font-weight: 500; margin-top: 1rem;}
+        .btn-neon{
+            background: transparent;
+            color: #00f7ff;
+            border: 2px solid #00f7ff;
+            border-radius: 30px;
+            padding: 10px 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: .3s;
+        }
+        .btn-neon:hover{
+            background: #00f7ff;
+            color: #0f0c29;
+            box-shadow: 0 0 20px #00f7ff;
+        }
+        .title-glow{
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px #00f7ff;
+        }
+    </style>
 
-        {{ form_errors(registrationForm) }}
+    <div class="glass-card animate__animated animate__fadeIn">
+        <h1 class="title-glow text-center mb-4"> Create my account</h1>
 
-        {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.roles, {
-            label: 'Registering As'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_start(registrationForm, {'attr': {'class': 'row g-3'}}) }}
 
-        <button type="submit" class="btn btn-primary py-3 px-5 mt-2">Register</button>
+        <div class="col-12">
+            <label class="form-label"><i class="bi bi-person me-1"></i> User Name </label>
+            {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control', 'placeholder': 'Pseudo'}}) }}
+            {{ form_errors(registrationForm.username) }}
+        </div>
+
+        <div class="col-12">
+            <label class="form-label"><i class="bi bi-envelope me-1"></i> E-mail</label>
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'adresse@email.com'}}) }}
+            {{ form_errors(registrationForm.email) }}
+        </div>
+
+        <div class="col-12">
+            <label class="form-label"><i class="bi bi-lock me-1"></i> Password </label>
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': '8 caractères minimum'}}) }}
+            {{ form_errors(registrationForm.plainPassword) }}
+        </div>
+
+        <div class="col-12">
+            <label class="form-label"><i class="bi bi-people me-1"></i> I am registering as </label>
+            {{ form_widget(registrationForm.roles, {'attr': {'class': 'form-select'}}) }}
+            {{ form_errors(registrationForm.roles) }}
+        </div>
+
+        <div class="col-12">
+            <div class="form-check">
+                {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                <label class="form-check-label">
+                    I accept the <a href="#" class="text-info">terms of use</a>
+                </label>
+                {{ form_errors(registrationForm.agreeTerms) }}
+            </div>
+        </div>
+
+        <div class="col-12 text-center">
+            <button type="submit" class="btn-neon">Sign up</button>
+        </div>
+
         {{ form_end(registrationForm) }}
+
+        <p class="text-center mt-4 mb-0">
+            Already have an account? <a href="{{ path('app_login') }}" class="text-info fw-bold">Log in</a>
+        </p>
     </div>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 {% endblock %}
