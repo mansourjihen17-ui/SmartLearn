@@ -13,7 +13,7 @@ class HomePageController extends AbstractController
     public function index(CoursesRepository $coursesRepository): Response
     {
         return $this->render('home_page/index.html.twig', [
-            'title' => 'Jagaad Online Learning Platform',
+            'title' => 'SmartLearn Online Learning Platform',
             'courses' => $coursesRepository->findAll()
         ]);
     }

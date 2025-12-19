@@ -18,7 +18,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile')]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('PUBLIC_ACCESS')]
     public function index(): Response
     {
         /** @var Users $user */

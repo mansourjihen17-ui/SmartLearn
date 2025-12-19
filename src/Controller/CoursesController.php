@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/courses')]
-#[IsGranted('IS_AUTHENTICATED_FULLY')]
+#[IsGranted('PUBLIC_ACCESS')]
 class CoursesController extends AbstractController
 {
     #[Route('/', name: 'app_courses_index', methods: ['GET'])]

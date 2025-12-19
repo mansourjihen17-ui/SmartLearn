@@ -19,7 +19,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class LessonsController extends AbstractController
 {
     #[Route('/', name: 'app_lessons_index', methods: ['GET'])]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('PUBLIC_ACCESS')]
     public function index(LessonsRepository $lessonsRepository): Response
     {
         return $this->render('lessons/index.html.twig', [
@@ -51,7 +51,7 @@ class LessonsController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_lessons_show', methods: ['GET'])]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('PUBLIC_ACCESS')]
     public function show(Lessons $lesson): Response
     {
         return $this->render('lessons/show.html.twig', [
@@ -93,7 +93,7 @@ class LessonsController extends AbstractController
     }
 
     #[Route('/{id}/complete', name: 'app_lessons_complete', methods: ['GET'])]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('PUBLIC_ACCESS')]
     public function complete(Lessons $lesson, EnrollmentsRepository $enrollmentsRepository, EntityManagerInterface $entityManager): Response
     {
         $enrollment = $enrollmentsRepository->findOneBy(['course' => $lesson->getCourse(), 'user' => $this->getUser()]);
